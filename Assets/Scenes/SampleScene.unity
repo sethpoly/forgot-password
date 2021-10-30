@@ -388,7 +388,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.75294125, g: 0.75294125, b: 0.75294125, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -440,6 +440,7 @@ GameObject:
   - component: {fileID: 93056283}
   - component: {fileID: 93056282}
   - component: {fileID: 93056281}
+  - component: {fileID: 93056285}
   m_Layer: 5
   m_Name: Window - 4
   m_TagString: Untagged
@@ -456,7 +457,7 @@ RectTransform:
   m_GameObject: {fileID: 93056279}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 1}
   m_Children: []
   m_Father: {fileID: 861213025}
   m_RootOrder: 3
@@ -530,6 +531,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 93056279}
   m_CullTransparentMesh: 1
+--- !u!114 &93056285
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 93056279}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e26d70e017fb137449c35372b41ee836, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &226831449
 GameObject:
   m_ObjectHideFlags: 0
@@ -723,7 +736,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.75294125, g: 0.75294125, b: 0.75294125, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -780,6 +793,7 @@ GameObject:
   - component: {fileID: 501180067}
   - component: {fileID: 501180066}
   - component: {fileID: 501180065}
+  - component: {fileID: 501180069}
   m_Layer: 5
   m_Name: Window - 2
   m_TagString: Untagged
@@ -796,7 +810,7 @@ RectTransform:
   m_GameObject: {fileID: 501180063}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 1}
   m_Children: []
   m_Father: {fileID: 861213025}
   m_RootOrder: 1
@@ -870,6 +884,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 501180063}
   m_CullTransparentMesh: 1
+--- !u!114 &501180069
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 501180063}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e26d70e017fb137449c35372b41ee836, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1121,6 +1147,7 @@ GameObject:
   - component: {fileID: 725555889}
   - component: {fileID: 725555888}
   - component: {fileID: 725555887}
+  - component: {fileID: 725555891}
   m_Layer: 5
   m_Name: Window - 3
   m_TagString: Untagged
@@ -1137,7 +1164,7 @@ RectTransform:
   m_GameObject: {fileID: 725555885}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 1}
   m_Children: []
   m_Father: {fileID: 861213025}
   m_RootOrder: 2
@@ -1211,6 +1238,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 725555885}
   m_CullTransparentMesh: 1
+--- !u!114 &725555891
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 725555885}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e26d70e017fb137449c35372b41ee836, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &861213024
 GameObject:
   m_ObjectHideFlags: 0
@@ -1246,10 +1285,10 @@ RectTransform:
   m_Father: {fileID: 1900226587}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 962, y: 524}
+  m_SizeDelta: {x: 0, y: 12}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &861213027
 CanvasRenderer:
@@ -1457,6 +1496,7 @@ GameObject:
   - component: {fileID: 1240315439}
   - component: {fileID: 1240315442}
   - component: {fileID: 1240315443}
+  - component: {fileID: 1240315441}
   m_Layer: 5
   m_Name: Window - Settings
   m_TagString: Untagged
@@ -1473,7 +1513,7 @@ RectTransform:
   m_GameObject: {fileID: 1240315437}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 1}
   m_Children: []
   m_Father: {fileID: 861213025}
   m_RootOrder: 0
@@ -1521,6 +1561,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1240315437}
   m_CullTransparentMesh: 1
+--- !u!114 &1240315441
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1240315437}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e26d70e017fb137449c35372b41ee836, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1240315442
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1599,7 +1651,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.75294125, g: 0.75294125, b: 0.75294125, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2129,7 +2181,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.75294125, g: 0.75294125, b: 0.75294125, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2481,10 +2533,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tabButtons: []
-  tabIdle: {fileID: 21300000, guid: 4153991afeb048e448fc49c7b1dec60e, type: 3}
+  tabClosed: {fileID: 0}
   tabHover: {fileID: 21300000, guid: be453168d6a83b04e90f13c919a6fa8e, type: 3}
-  tabActive: {fileID: 21300000, guid: 19688a5b8fbf4ae469e98352d5b99fc9, type: 3}
-  selectedTab: {fileID: 0}
+  tabCurrent: {fileID: 0}
+  tabOpen: {fileID: 0}
+  currentTab: {fileID: 0}
   objectsToSwap:
   - {fileID: 1240315437}
   - {fileID: 501180063}

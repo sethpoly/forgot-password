@@ -8,25 +8,27 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IEndDragHandler
     public GameObject Target;
     private EventTrigger _eventTrigger;
     private Vector2 lastMousePosition;
+    private Window window;
 
     public void Start()
     {
         _eventTrigger = GetComponent<EventTrigger>();
         _eventTrigger.AddEventTrigger(OnDrag, EventTriggerType.Drag);
         _eventTrigger.AddEventTrigger(OnMouseDown, EventTriggerType.PointerClick);
-
+        window = GetComponent<Window>();
     }
 
     public void OnMouseDown(BaseEventData data)
     {
-        StackOnTop();
+        window.Display = Display.TopMost;
     }
 
     public void OnBeginDrag(PointerEventData eventData)
     {
         Debug.Log("Begin Drag");
         lastMousePosition = eventData.position;
-        StackOnTop();
+
+        window.Display = Display.TopMost;
     }
 
     public void OnDrag(BaseEventData data)
@@ -71,11 +73,5 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IEndDragHandler
             isInside = true;
         }
         return isInside;
-    }
-
-    // Stack window at topmost layer
-    private void StackOnTop()
-    {
-        transform.SetAsLastSibling(); 
     }
 }
