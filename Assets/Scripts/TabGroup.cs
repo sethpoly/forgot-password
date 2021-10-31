@@ -25,36 +25,22 @@ public class TabGroup : MonoBehaviour
 
     public void OnTabEnter(TabButton button)
     {
-        //ResetTabs();
-        //SetTabBackgrounds();
+        UpdateTabStates();
 
         // Increase alpha of already set background sprite
         Color tempColor = button.background.color;
-        tempColor.a = .2f;
+        tempColor.a += .2f;
         button.background.color = tempColor;
-            
-            
-       /* if (currentTab == null || button != currentTab)  
-        {
-            button.background.sprite = tabHover;
-        }*/
     }
 
     public void OnTabExit(TabButton button)
     {
-        //ResetTabs();
-        //SetTabBackgrounds();
-        Color tempColor = button.background.color;
-        tempColor.a = .0f;
-        button.background.color = tempColor;
+        UpdateTabStates();
     }
 
     public void OnTabSelected(TabButton button)
     {
         currentTab = button;
-        ResetOtherTabs();
-        //button.background.sprite = tabCurrent;
-
 
         // Just minimize/show on tab click - should not effect other tabs
         Window window = GetWindow(button);
@@ -62,48 +48,70 @@ public class TabGroup : MonoBehaviour
         if (window.Display == Display.TopMost)
         {
             window.Display = Display.Minimized;
-            SetNextTopMost(window);
         }
         else 
             window.Display = Display.TopMost;
+
+        SetNextTopMost(window);
+        UpdateTabStates();
     }
 
     // Set next window in stack to topmost
     private void SetNextTopMost(Window window)
     {
         GameObject windowContainer = window.transform.parent.gameObject;
-        Window nextActiveWindow = null;
-        int windowCount = windowContainer.transform.childCount;
+        //int windowCount = windowContainer.transform.childCount;
+        int windowCount = windowContainer.transform.childCount; //GetComponentsInChildren<Transform>().GetLength(0);
+        List<Window> activeWindows = new List<Window>();
 
         // Count active game objects in stack
         for (int i = 0; i < windowCount; i++)
         {
             Window nextWindowInStack = windowContainer.transform.GetChild(i).GetComponent<Window>();
-            if (nextWindowInStack.isActiveAndEnabled)
+            if (nextWindowInStack.isActiveAndEnabled && nextWindowInStack != null)
             {
-                nextActiveWindow = nextWindowInStack;
+
+                nextWindowInStack.Display = Display.Open;
+                activeWindows.Add(nextWindowInStack);
             }
+
+            /*if (nextWindowInStack.isActiveAndEnabled && nextWindowInStack != null)
+            {
+
+                Debug.Log("Next window in stack : " + nextWindowInStack.Display);
+                // !null -> if not the last element, set to Open, else topmost
+                if (nextWindowInStack.Display == Display.Open)
+                {
+                    nextWindowInStack.Display = Display.TopMost;
+                    Debug.Log("Setting a window to next topmost... i = " + i);
+                }
+               // else if (nextWindowInStack.Display == Display.TopMost)
+                 //   nextWindowInStack.Display = Display.Open;
+            }*/
         }
 
-        if (nextActiveWindow != null)
+        // Set the corresponding button to active
+        if (activeWindows.Count > 0)
         {
-            if (nextActiveWindow.Display == Display.Open)
-                nextActiveWindow.Display = Display.TopMost;
+            activeWindows[activeWindows.Count - 1].Display = Display.TopMost;
         }
+
+        Debug.Log("Active windows count: " + activeWindows.Count);
     }
 
-    public void ResetOtherTabs()
+    public void UpdateTabStates()
     {
         foreach (TabButton button in tabButtons)
         {
-            if (currentTab != null && button == currentTab) { continue;  }
+            //if (currentTab != null && button == currentTab) { continue;  }
 
             // Check if the other tabs are open and assign state accordingly
             Window window = GetWindow(button);
             switch (window.Display)
             {
                 case Display.TopMost:
-                    window.Display = Display.Open;
+                    currentTab = button;
+                    //window.Display = Display.Open;
                     break;
                 case Display.Open:
                     break;
@@ -113,37 +121,39 @@ public class TabGroup : MonoBehaviour
                     break;
             }
         }
+        UpdateTabBackgrounds();
     }
 
-    private void SetTabBackgrounds()
+    public void UpdateTabBackgrounds()
     {
         foreach (TabButton button in tabButtons)
         {
             Window window = GetWindow(button);
-
-            // Set sprite of each button based on current button display
-            switch (window.Display)
-            {
-                case Display.TopMost:
-                    window.Display = Display.Open;
-                    break;
-                case Display.Open:
-                    break;
-                case Display.Minimized:
-                    break;
-                case Display.Closed:
-                    //button.background.sprite = tabClosed;
-                    ResetAlpha(button);
-                    break;
-
-            }
+            ResetAlpha(button, window.Display);
         }
     }
 
-    private void ResetAlpha(TabButton button)
+    private void ResetAlpha(TabButton button, Display display)
     {
         Color tempColor = button.background.color;
-        tempColor.a = .0f;
+        float newAlpha = .0f;
+
+        switch (display)
+        {
+            case Display.TopMost:
+                newAlpha = .45f;
+                break;
+            case Display.Open:
+                newAlpha = .2f;
+                break;
+            case Display.Minimized:
+                newAlpha = .2f;
+                break;
+            case Display.Closed:
+                newAlpha = .0f;
+                break;
+        }
+        tempColor.a = newAlpha;
         button.background.color = tempColor;
     }
 

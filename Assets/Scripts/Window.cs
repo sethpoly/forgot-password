@@ -5,7 +5,9 @@ public enum Display { Closed, TopMost, Open, Minimized  };
 
 public class Window : MonoBehaviour
 {
-    
+
+    public TabGroup tabGroup;
+
     public Display Display
     {
         get { return _display; }
@@ -28,8 +30,10 @@ public class Window : MonoBehaviour
                     Minimized();
                     break;
             }
+            //tabGroup.UpdateTabBackgrounds();
         }
     }
+    [SerializeField]
     private Display _display;
 
     private void TopMost()
