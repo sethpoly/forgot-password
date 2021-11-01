@@ -480,6 +480,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Target: {fileID: 93056279}
+  windowManager: {fileID: 2127035005}
 --- !u!114 &93056282
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -543,7 +544,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e26d70e017fb137449c35372b41ee836, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tabGroup: {fileID: 2127035005}
+  _display: 0
 --- !u!1 &226831449
 GameObject:
   m_ObjectHideFlags: 0
@@ -834,6 +835,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Target: {fileID: 501180063}
+  windowManager: {fileID: 2127035005}
 --- !u!114 &501180066
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -897,7 +899,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e26d70e017fb137449c35372b41ee836, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tabGroup: {fileID: 2127035005}
+  _display: 0
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1189,6 +1191,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Target: {fileID: 725555885}
+  windowManager: {fileID: 2127035005}
 --- !u!114 &725555888
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1252,7 +1255,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e26d70e017fb137449c35372b41ee836, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tabGroup: {fileID: 2127035005}
+  _display: 0
 --- !u!1 &861213024
 GameObject:
   m_ObjectHideFlags: 0
@@ -1576,7 +1579,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e26d70e017fb137449c35372b41ee836, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tabGroup: {fileID: 2127035005}
+  _display: 0
 --- !u!114 &1240315442
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1603,6 +1606,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Target: {fileID: 1240315437}
+  windowManager: {fileID: 2127035005}
 --- !u!1 &1256372813
 GameObject:
   m_ObjectHideFlags: 0
@@ -2418,7 +2422,7 @@ GameObject:
   - component: {fileID: 2127035003}
   - component: {fileID: 2127035005}
   m_Layer: 5
-  m_Name: TabBar
+  m_Name: WindowTabManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2542,11 +2546,12 @@ MonoBehaviour:
   tabCurrent: {fileID: 0}
   tabOpen: {fileID: 0}
   currentTab: {fileID: 0}
-  objectsToSwap:
+  windows:
   - {fileID: 1240315437}
   - {fileID: 501180063}
   - {fileID: 725555885}
   - {fileID: 93056279}
+  windowContainer: {fileID: 861213024}
 --- !u!1001 &3863724584114431231
 PrefabInstance:
   m_ObjectHideFlags: 0

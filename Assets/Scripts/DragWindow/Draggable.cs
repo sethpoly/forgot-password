@@ -10,6 +10,9 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IEndDragHandler
     private Vector2 lastMousePosition;
     private Window window;
 
+    [SerializeField]
+    private WindowTabManager windowManager;
+
     public void Start()
     {
         _eventTrigger = GetComponent<EventTrigger>();
@@ -20,7 +23,7 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IEndDragHandler
 
     public void OnMouseDown(BaseEventData data)
     {
-        window.Display = Display.TopMost;
+        windowManager.SetWindowStateAndRefresh(window, Display.TopMost);
     }
 
     public void OnBeginDrag(PointerEventData eventData)
@@ -28,7 +31,7 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IEndDragHandler
         Debug.Log("Begin Drag");
         lastMousePosition = eventData.position;
 
-        window.Display = Display.TopMost;
+        windowManager.SetWindowStateAndRefresh(window, Display.TopMost);
     }
 
     public void OnDrag(BaseEventData data)
