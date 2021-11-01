@@ -13,12 +13,19 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IEndDragHandler
     [SerializeField]
     private WindowTabManager windowManager;
 
+    [SerializeField]
+    private GameObject windowContainer;
+
+    private Rect containerRect;
+
     public void Start()
     {
         _eventTrigger = GetComponent<EventTrigger>();
         _eventTrigger.AddEventTrigger(OnDrag, EventTriggerType.Drag);
         _eventTrigger.AddEventTrigger(OnMouseDown, EventTriggerType.PointerClick);
         window = GetComponent<Window>();
+
+        containerRect = windowContainer.GetComponent<RectTransform>().rect;
     }
 
     public void OnMouseDown(BaseEventData data)
@@ -60,10 +67,11 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IEndDragHandler
     private bool IsRectTransformInsideSreen(RectTransform rectTransform)
     {
         bool isInside = false;
+        float tabHeight = Screen.height - containerRect.height;
         Vector3[] corners = new Vector3[4];
         rectTransform.GetWorldCorners(corners);
         int visibleCorners = 0;
-        Rect rect = new Rect(0, 0, Screen.width, Screen.height);
+        Rect rect = new Rect(0, tabHeight, containerRect.width, containerRect.height);
         foreach (Vector3 corner in corners)
         {
             if (rect.Contains(corner))
