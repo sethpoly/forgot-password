@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WindowTabManager : MonoBehaviour
+public class WindowTabManager : MonoBehaviour, ITabGroup
 {
 
     public List<TabButton> tabButtons;
