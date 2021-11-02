@@ -1,10 +1,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WindowTabManager : MonoBehaviour, ITabGroup
+public class TaskBarManager : TabGroup
 {
 
-    public List<TabButton> tabButtons;
     public Sprite tabClosed;    // Tab was never opened
     public Sprite tabHover;
     public Sprite tabCurrent;   // Topmost tab
@@ -14,7 +13,8 @@ public class WindowTabManager : MonoBehaviour, ITabGroup
     public List<GameObject> windows;
     public GameObject windowContainer;
 
-    public void Subscribe(TabButton button)
+    
+    public override void Subscribe(TabButton button)
     {
         if (tabButtons == null)
         {
@@ -24,7 +24,7 @@ public class WindowTabManager : MonoBehaviour, ITabGroup
         tabButtons.Add(button);
     }
 
-    public void OnTabEnter(TabButton button)
+    public override void OnTabEnter(TabButton button)
     {
         UpdateTabBackgrounds();
 
@@ -34,12 +34,12 @@ public class WindowTabManager : MonoBehaviour, ITabGroup
         button.background.color = tempColor;
     }
 
-    public void OnTabExit(TabButton button)
+    public override void OnTabExit(TabButton button)
     {
         UpdateTabBackgrounds();
     }
 
-    public void OnTabSelected(TabButton button)
+    public override void OnTabSelected(TabButton button)
     {
         currentTab = button;
 

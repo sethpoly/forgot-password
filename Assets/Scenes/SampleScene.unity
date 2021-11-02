@@ -425,6 +425,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 216da8842ad2f344bafc5090e661edd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tabGroup: {fileID: 2127035005}
   background: {fileID: 0}
 --- !u!1 &226831449
 GameObject:
@@ -656,6 +657,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 216da8842ad2f344bafc5090e661edd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tabGroup: {fileID: 2127035005}
   background: {fileID: 0}
 --- !u!1 &358220921 stripped
 GameObject:
@@ -1228,6 +1230,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 216da8842ad2f344bafc5090e661edd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tabGroup: {fileID: 1401453525}
   background: {fileID: 0}
 --- !u!1001 &780925522
 PrefabInstance:
@@ -1689,6 +1692,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 216da8842ad2f344bafc5090e661edd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tabGroup: {fileID: 2127035005}
   background: {fileID: 0}
 --- !u!1 &1302876241
 GameObject:
@@ -1825,7 +1829,7 @@ GameObject:
   - component: {fileID: 1401453524}
   - component: {fileID: 1401453525}
   m_Layer: 5
-  m_Name: NavigationBar
+  m_Name: NavBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2409,6 +2413,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 216da8842ad2f344bafc5090e661edd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tabGroup: {fileID: 2127035005}
   background: {fileID: 0}
 --- !u!1 &2008629516
 GameObject:
@@ -2609,7 +2614,7 @@ GameObject:
   - component: {fileID: 2127035003}
   - component: {fileID: 2127035005}
   m_Layer: 5
-  m_Name: WindowTabManager
+  m_Name: TaskBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

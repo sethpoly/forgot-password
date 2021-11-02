@@ -11,7 +11,7 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IEndDragHandler
     private Window window;
 
     [SerializeField]
-    private WindowTabManager windowManager;
+    private TaskBarManager windowManager;
 
     [SerializeField]
     private GameObject windowContainer;

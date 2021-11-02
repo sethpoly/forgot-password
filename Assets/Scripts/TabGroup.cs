@@ -1,8 +1,12 @@
+using System.Collections.Generic;
+using UnityEngine;
 
-public interface ITabGroup  
+public abstract class TabGroup: MonoBehaviour
 {
-    void Subscribe(TabButton button);
-    void OnTabEnter(TabButton button);
-    void OnTabExit(TabButton button);
-    void OnTabSelected(TabButton button);
+    public List<TabButton> tabButtons;
+
+    public abstract void Subscribe(TabButton button);
+    public abstract void OnTabEnter(TabButton button);
+    public abstract void OnTabExit(TabButton button);
+    public abstract void OnTabSelected(TabButton button);
 }
