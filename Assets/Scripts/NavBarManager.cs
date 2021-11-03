@@ -6,6 +6,8 @@ using UnityEngine;
 // Minimize, close, maximize tab buttons
 public class NavBarManager : TabGroup
 {
+    [SerializeField]
+    private TaskBarManager taskBarManager;
 
     public override void Subscribe(TabButton button)
     {
@@ -29,6 +31,12 @@ public class NavBarManager : TabGroup
 
     public override void OnTabSelected(TabButton button)
     {
-        throw new System.NotImplementedException();
+        taskBarManager.SetWindowStateAndRefresh(GetWindow(button), Display.Minimized);
+    }
+
+    // Get the Window script component from its corresponding tab button
+    private Window GetWindow(TabButton button)
+    {
+        return GetComponentInParent<Window>();
     }
 }
