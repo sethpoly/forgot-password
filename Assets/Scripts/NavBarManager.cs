@@ -31,11 +31,26 @@ public class NavBarManager : TabGroup
 
     public override void OnTabSelected(TabButton button)
     {
-        taskBarManager.SetWindowStateAndRefresh(GetWindow(button), Display.Minimized);
+        NavAction clickAction = button.GetComponent<NavButton>().clickAction;
+        Display nextDisplay = Display.Minimized;
+
+        switch(clickAction)
+        {
+            case NavAction.Minimize:
+                nextDisplay = Display.Minimized;
+                break;
+            case NavAction.Fullscreen:
+                nextDisplay = Display.TopMost; // TODO
+                break;
+            case NavAction.Close:
+                nextDisplay = Display.Closed;
+                break;
+        }
+        taskBarManager.SetWindowStateAndRefresh(GetWindow(), nextDisplay);
     }
 
     // Get the Window script component from its corresponding tab button
-    private Window GetWindow(TabButton button)
+    private Window GetWindow()
     {
         return GetComponentInParent<Window>();
     }
