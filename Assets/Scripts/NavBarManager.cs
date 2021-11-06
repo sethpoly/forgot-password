@@ -21,7 +21,10 @@ public class NavBarManager : TabGroup
 
     public override void OnTabEnter(TabButton button)
     {
-        throw new System.NotImplementedException();
+        // Increase alpha of already set background sprite
+        Color tempColor = button.background.color;
+        tempColor.a += .2f;
+        button.background.color = tempColor;
     }
 
     public override void OnTabExit(TabButton button)

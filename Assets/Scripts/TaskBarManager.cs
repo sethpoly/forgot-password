@@ -3,16 +3,9 @@ using UnityEngine;
 
 public class TaskBarManager : TabGroup
 {
-
-    public Sprite tabClosed;    // Tab was never opened
-    public Sprite tabHover;
-    public Sprite tabCurrent;   // Topmost tab
-    public Sprite tabOpen;  // Tab can be minimized or not
-    
     public TabButton currentTab;  // Topmost tab
     public List<GameObject> windows;
     public GameObject windowContainer;
-
     
     public override void Subscribe(TabButton button)
     {

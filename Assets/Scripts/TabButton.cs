@@ -14,18 +14,18 @@ public class TabButton : MonoBehaviour, IPointerEnterHandler, IPointerClickHandl
     public void OnPointerClick(PointerEventData eventData)
     {
         tabGroup.OnTabSelected(this);
-        Debug.Log("Click");
+        Debug.Log(name + ": Click");
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        Debug.Log("Enter");
+        Debug.Log(name + ": Enter");
         tabGroup.OnTabEnter(this);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        Debug.Log("Exit");
+        Debug.Log(name + ": Exit");
         tabGroup.OnTabExit(this);
     }
 
