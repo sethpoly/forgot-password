@@ -43,6 +43,7 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IEndDragHandler
 
     public void OnDrag(BaseEventData data)
     {
+        Debug.Log("Dragging");
         PointerEventData ped = (PointerEventData)data;
         Vector2 currentMousePosition = ped.position;
         Vector2 diff = currentMousePosition - lastMousePosition;
@@ -83,6 +84,8 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IEndDragHandler
         {
             isInside = true;
         }
+        Debug.Log("isInside: " + isInside);
+        Debug.Log("Corners: " + corners);
         return isInside;
     }
 }
