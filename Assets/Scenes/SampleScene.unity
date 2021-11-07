@@ -930,7 +930,8 @@ PrefabInstance:
       propertyPath: windowContainer
       value: 
       objectReference: {fileID: 861213024}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -1277273700484611258, guid: e28803d4b170b484a84efd9635c9a635, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: e28803d4b170b484a84efd9635c9a635, type: 3}
 --- !u!224 &424206980 stripped
 RectTransform:
@@ -1188,6 +1189,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 861213025}
     m_Modifications:
+    - target: {fileID: -1277273700484611258, guid: e28803d4b170b484a84efd9635c9a635, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7846859524805084968, guid: e28803d4b170b484a84efd9635c9a635, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1312,7 +1317,8 @@ PrefabInstance:
       propertyPath: windowContainer
       value: 
       objectReference: {fileID: 861213024}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -1277273700484611258, guid: e28803d4b170b484a84efd9635c9a635, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: e28803d4b170b484a84efd9635c9a635, type: 3}
 --- !u!1 &704189972 stripped
 GameObject:
@@ -1489,7 +1495,8 @@ PrefabInstance:
       propertyPath: windowContainer
       value: 
       objectReference: {fileID: 861213024}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -1277273700484611258, guid: e28803d4b170b484a84efd9635c9a635, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: e28803d4b170b484a84efd9635c9a635, type: 3}
 --- !u!224 &780925523 stripped
 RectTransform:
@@ -2155,6 +2162,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ShowMaskGraphic: 1
+--- !u!1 &1657690796 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7234363166925154179, guid: 69ae5f15506622640b635347e1508d21, type: 3}
+  m_PrefabInstance: {fileID: 7234363167538715423}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1657690797
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1657690796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc949b23555b73442b6e276951372d5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  description: Minimize
+  toolTipPrefab: {fileID: 5996065430840721910, guid: 775f48f8a6fe26c469e0c1d54d12adbd, type: 3}
+  offset: {x: 0, y: -25, z: 0}
 --- !u!1001 &1740978990
 PrefabInstance:
   m_ObjectHideFlags: 0
