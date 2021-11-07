@@ -2162,6 +2162,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ShowMaskGraphic: 1
+--- !u!1 &1631097588 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7234363166817779380, guid: 69ae5f15506622640b635347e1508d21, type: 3}
+  m_PrefabInstance: {fileID: 7234363167538715423}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1631097593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1631097588}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc949b23555b73442b6e276951372d5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  description: Fullscreen
+  toolTipPrefab: {fileID: 5996065430840721910, guid: 775f48f8a6fe26c469e0c1d54d12adbd, type: 3}
+  offset: {x: 0, y: 0, z: 0}
 --- !u!1 &1657690796 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7234363166925154179, guid: 69ae5f15506622640b635347e1508d21, type: 3}
@@ -2181,7 +2201,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   description: Minimize
   toolTipPrefab: {fileID: 5996065430840721910, guid: 775f48f8a6fe26c469e0c1d54d12adbd, type: 3}
-  offset: {x: 0, y: -25, z: 0}
+  offset: {x: 0, y: 0, z: 0}
 --- !u!1001 &1740978990
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3290,7 +3310,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: Window - 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6274380866878409805, guid: 69ae5f15506622640b635347e1508d21, type: 3}
+    - {fileID: 8790614031293927923, guid: 69ae5f15506622640b635347e1508d21, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 69ae5f15506622640b635347e1508d21, type: 3}
 --- !u!1001 &8090083737747107848
 PrefabInstance:

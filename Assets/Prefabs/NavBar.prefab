@@ -385,6 +385,7 @@ GameObject:
   - component: {fileID: 9089377539339196338}
   - component: {fileID: 9089377539339196339}
   - component: {fileID: 9089377539339196300}
+  - component: {fileID: 5572499106377497727}
   m_Layer: 5
   m_Name: Button - Minimize
   m_TagString: Untagged
@@ -465,6 +466,21 @@ MonoBehaviour:
   tabGroup: {fileID: 9089377538099941624}
   background: {fileID: 0}
   clickAction: 0
+--- !u!114 &5572499106377497727
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9089377539339196337}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc949b23555b73442b6e276951372d5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  description: Minimize
+  toolTipPrefab: {fileID: 5996065430840721910, guid: 775f48f8a6fe26c469e0c1d54d12adbd, type: 3}
+  offset: {x: 0, y: 0, z: 0}
 --- !u!1 &9089377539611706786
 GameObject:
   m_ObjectHideFlags: 0
@@ -477,6 +493,7 @@ GameObject:
   - component: {fileID: 9089377539611706814}
   - component: {fileID: 9089377539611706815}
   - component: {fileID: 9089377539611706812}
+  - component: {fileID: 7291270435858698954}
   m_Layer: 5
   m_Name: Button - Close
   m_TagString: Untagged
@@ -557,6 +574,21 @@ MonoBehaviour:
   tabGroup: {fileID: 9089377538099941624}
   background: {fileID: 0}
   clickAction: 2
+--- !u!114 &7291270435858698954
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9089377539611706786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc949b23555b73442b6e276951372d5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  description: Close
+  toolTipPrefab: {fileID: 5996065430840721910, guid: 775f48f8a6fe26c469e0c1d54d12adbd, type: 3}
+  offset: {x: 0, y: 0, z: 0}
 --- !u!1 &9089377539669629682
 GameObject:
   m_ObjectHideFlags: 0
@@ -644,6 +676,7 @@ GameObject:
   - component: {fileID: 9089377539768684162}
   - component: {fileID: 9089377539768684163}
   - component: {fileID: 9089377539768684160}
+  - component: {fileID: 7185742440103584193}
   m_Layer: 5
   m_Name: Button - Full
   m_TagString: Untagged
@@ -724,3 +757,18 @@ MonoBehaviour:
   tabGroup: {fileID: 9089377538099941624}
   background: {fileID: 0}
   clickAction: 1
+--- !u!114 &7185742440103584193
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9089377539768684166}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc949b23555b73442b6e276951372d5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  description: Fullscreen
+  toolTipPrefab: {fileID: 5996065430840721910, guid: 775f48f8a6fe26c469e0c1d54d12adbd, type: 3}
+  offset: {x: 0, y: 0, z: 0}
