@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 public enum Display { Closed, TopMost, Open, Minimized  };
 
@@ -48,7 +49,7 @@ public class Window : MonoBehaviour
         transform.SetAsLastSibling();
 
         // Testing
-       // ApplyShader();
+        ApplyShader();
     }
 
     // TODO: 
@@ -80,6 +81,11 @@ public class Window : MonoBehaviour
     // Testing shaders
     private void ApplyShader()
     {
-        image.material = testShader;
+        Image[] images; 
+        images = GetComponentsInChildren<Image>();
+        foreach (Image i in images)
+        {
+            i.material = testShader;
+        }
     }
 }
