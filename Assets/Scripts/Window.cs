@@ -1,10 +1,18 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public enum Display { Closed, TopMost, Open, Minimized  };
 
 
 public class Window : MonoBehaviour
 {
+
+    [SerializeField]
+    private Image image;
+
+    [SerializeField]
+    private Material testShader;
+
     public Display Display
     {
         get { return _display; }
@@ -38,6 +46,9 @@ public class Window : MonoBehaviour
         Debug.Log("Setting window TopMost...");
         gameObject.SetActive(true);
         transform.SetAsLastSibling();
+
+        // Testing
+       // ApplyShader();
     }
 
     // TODO: 
@@ -64,5 +75,11 @@ public class Window : MonoBehaviour
     {
         Debug.Log("Disabling self...");
         gameObject.SetActive(false);
+    }
+
+    // Testing shaders
+    private void ApplyShader()
+    {
+        image.material = testShader;
     }
 }
