@@ -32,6 +32,7 @@ public class Window : MonoBehaviour
     [SerializeField]
     private Display _display;
 
+
     private void TopMost()
     {
         Debug.Log("Setting window TopMost...");
@@ -48,13 +49,20 @@ public class Window : MonoBehaviour
     private void Minimized()
     {
         Debug.Log("Setting window Minimized...");
-        gameObject.SetActive(false);
+        DisableSelf();
+        //gameObject.SetActive(false);
     }
     
     // TODO:
     private void Closed()
     {
         Debug.Log("Window: Closed() -> Didn't implement...");
+        DisableSelf();
+    }
+
+    private void DisableSelf()
+    {
+        Debug.Log("Disabling self...");
         gameObject.SetActive(false);
     }
 }
