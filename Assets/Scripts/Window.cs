@@ -47,9 +47,6 @@ public class Window : MonoBehaviour
         Debug.Log("Setting window TopMost...");
         gameObject.SetActive(true);
         transform.SetAsLastSibling();
-
-        // Testing
-        ApplyShader();
     }
 
     // TODO: 
@@ -69,23 +66,17 @@ public class Window : MonoBehaviour
     private void Closed()
     {
         Debug.Log("Window: Closed() -> Didn't implement...");
-        DisableSelf();
+        // Testing
+        GetComponent<DisappearEffect>().StartDisappearring((onCompletion) =>
+        {
+            Debug.Log("Disappearing finished? -> " + onCompletion);
+        });
+        //DisableSelf();
     }
 
     private void DisableSelf()
     {
         Debug.Log("Disabling self...");
         gameObject.SetActive(false);
-    }
-
-    // Testing shaders
-    private void ApplyShader()
-    {
-        Image[] images; 
-        images = GetComponentsInChildren<Image>();
-        foreach (Image i in images)
-        {
-            i.material = testShader;
-        }
     }
 }
