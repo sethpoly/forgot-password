@@ -6,20 +6,17 @@ using UnityEngine;
 // Minimize, close, maximize tab buttons
 public class NavBarManager : TabGroup
 {
-    [SerializeField]
-    private TaskBarManager taskBarManager;
-
-    public override void Subscribe(TabButton button)
+    public override void Subscribe(TTabButton button)
     {
         if (tabButtons == null)
         {
-            tabButtons = new List<TabButton>();
+            tabButtons = new List<TTabButton>();
         }
 
         tabButtons.Add(button);
     }
 
-    public override void OnTabEnter(TabButton button)
+    public override void OnTabEnter(TTabButton button)
     {
         // Increase alpha of already set background sprite
         Color tempColor = button.background.color;
@@ -27,12 +24,12 @@ public class NavBarManager : TabGroup
         button.background.color = tempColor;
     }
 
-    public override void OnTabExit(TabButton button)
+    public override void OnTabExit(TTabButton button)
     {
         throw new System.NotImplementedException();
     }
 
-    public override void OnTabSelected(TabButton button)
+    public override void OnTabSelected(TTabButton button)
     {
         NavAction clickAction = button.GetComponent<NavButton>().clickAction;
         Display nextDisplay = Display.Minimized;
@@ -49,7 +46,7 @@ public class NavBarManager : TabGroup
                 nextDisplay = Display.Closed;
                 break;
         }
-        taskBarManager.SetWindowStateAndRefresh(GetWindow(), nextDisplay);
+        TaskBarManager.Instance.SetWindowStateAndRefresh(GetWindow(), nextDisplay);
     }
 
     // Get the Window script component from its corresponding tab button

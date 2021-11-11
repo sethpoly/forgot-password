@@ -38,7 +38,7 @@ Material:
     m_Floats:
     - Vector1_6769d04088134d80bdf43aa703dfbae0: 0.01
     - Vector1_d465c5650e7646b88dd4a52528a2b7de: 5000
-    - _DissolveSlider: 1
+    - _DissolveSlider: 0.99532884
     m_Colors:
     - Color_35c8949bf5924c70a95de83fdce4a054: {r: 0.5882353, g: 0.2562733, b: 0.8113208, a: 0}
   m_BuildTextureStacks: []

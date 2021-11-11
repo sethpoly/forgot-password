@@ -3,21 +3,37 @@ using UnityEngine;
 
 public class TaskBarManager : TabGroup
 {
-    public TabButton currentTab;  // Topmost tab
+
+    private static TaskBarManager _instance;
+    public static TaskBarManager Instance { get { return _instance; } }
+
+    private void Awake()
+    {
+        if (_instance != null && _instance != this)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            _instance = this;
+        }
+    }
+
+    public TTabButton currentTab;  // Topmost tab
     public List<GameObject> windows;
     public GameObject windowContainer;
     
-    public override void Subscribe(TabButton button)
+    public override void Subscribe(TTabButton button)
     {
         if (tabButtons == null)
         {
-            tabButtons = new List<TabButton>();
+            tabButtons = new List<TTabButton>();
         }
 
         tabButtons.Add(button);
     }
 
-    public override void OnTabEnter(TabButton button)
+    public override void OnTabEnter(TTabButton button)
     {
         UpdateTabBackgrounds();
 
@@ -27,12 +43,12 @@ public class TaskBarManager : TabGroup
         button.background.color = tempColor;
     }
 
-    public override void OnTabExit(TabButton button)
+    public override void OnTabExit(TTabButton button)
     {
         UpdateTabBackgrounds();
     }
 
-    public override void OnTabSelected(TabButton button)
+    public override void OnTabSelected(TTabButton button)
     {
         currentTab = button;
 
@@ -66,7 +82,8 @@ public class TaskBarManager : TabGroup
         for (int i = 0; i < windowCount; i++)
         {
             Window nextWindowInStack = windowContainer.transform.GetChild(i).GetComponent<Window>();
-            if (nextWindowInStack.isActiveAndEnabled && nextWindowInStack != null)
+            //if (nextWindowInStack.isActiveAndEnabled && nextWindowInStack != null)
+            if (!nextWindowInStack.transitioning && nextWindowInStack.isActiveAndEnabled && nextWindowInStack != null)
             {
                 nextWindowInStack.Display = Display.Open;
                 activeWindows.Add(nextWindowInStack);
@@ -82,14 +99,14 @@ public class TaskBarManager : TabGroup
 
     private void UpdateTabBackgrounds()
     {
-        foreach (TabButton button in tabButtons)
+        foreach (TTabButton button in tabButtons)
         {
             Window window = GetWindow(button);
             ResetAlpha(button, window.Display);
         }
     }
 
-    private void ResetAlpha(TabButton button, Display display)
+    private void ResetAlpha(TTabButton button, Display display)
     {
         Color tempColor = button.background.color;
         float newAlpha = .0f;
@@ -114,7 +131,7 @@ public class TaskBarManager : TabGroup
     }
 
     // Get the Window script component from its corresponding tab button
-    private Window GetWindow(TabButton button)
+    private Window GetWindow(TTabButton button)
     {
         int index = button.transform.GetSiblingIndex();
         return windows[index].GetComponent<Window>();

@@ -3,10 +3,10 @@ using UnityEngine;
 
 public abstract class TabGroup: MonoBehaviour
 {
-    public List<TabButton> tabButtons;
+    public List<TTabButton> tabButtons;
 
-    public abstract void Subscribe(TabButton button);
-    public abstract void OnTabEnter(TabButton button);
-    public abstract void OnTabExit(TabButton button);
-    public abstract void OnTabSelected(TabButton button);
+    public abstract void Subscribe(TTabButton button);
+    public abstract void OnTabEnter(TTabButton button);
+    public abstract void OnTabExit(TTabButton button);
+    public abstract void OnTabSelected(TTabButton button);
 }

@@ -5,13 +5,9 @@ using UnityEngine.EventSystems;
 public class Draggable : MonoBehaviour, IBeginDragHandler, IEndDragHandler
 {
 
-    public GameObject Target;
     private EventTrigger _eventTrigger;
     private Vector2 lastMousePosition;
     private Window window;
-
-    [SerializeField]
-    private TaskBarManager windowManager;
 
     [SerializeField]
     private GameObject windowContainer;
@@ -30,7 +26,7 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IEndDragHandler
 
     public void OnMouseDown(BaseEventData data)
     {
-        windowManager.SetWindowStateAndRefresh(window, Display.TopMost);
+        TaskBarManager.Instance.SetWindowStateAndRefresh(window, Display.TopMost);
     }
 
     public void OnBeginDrag(PointerEventData eventData)
@@ -38,7 +34,7 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IEndDragHandler
         Debug.Log("Begin Drag");
         lastMousePosition = eventData.position;
 
-        windowManager.SetWindowStateAndRefresh(window, Display.TopMost);
+        TaskBarManager.Instance.SetWindowStateAndRefresh(window, Display.TopMost);
     }
 
     public void OnDrag(BaseEventData data)

@@ -6,37 +6,22 @@ using UnityEngine.UI;
 public class DisappearEffect : MonoBehaviour
 {
     [SerializeField] 
-    private Material material;
+    private Material dissolveMaterial;
+
+    [SerializeField]
+    private Material originalMaterial;
 
     private float dissolveTime = 2f;
-
     private float dissolveAmount;
-    private bool isDissolving;
-
-/*    void Update()
-    {
-        if(isDissolving)
-            dissolveAmount = Mathf.Clamp01(dissolveAmount + Time.deltaTime * dissolveTime);
-
-        material.SetFloat("_DissolveSlider", dissolveAmount);
-
-        FullyDisappeared();
-    }*/
 
     // Begin disappearing 
     public void StartDisappearring(System.Action<bool> onCompletion)
     {
-        ApplyShader();
+        ApplyShader(dissolveMaterial);
 
         StartCoroutine(Disappear((result) => {
             onCompletion(result);
         }));
-
-        //if(!isDissolving)
-        //{
-          //  ApplyShader();
-            //isDissolving = true;
-        //}
     }
 
     public IEnumerator Disappear(System.Action<bool> onCompletion)
@@ -47,7 +32,7 @@ public class DisappearEffect : MonoBehaviour
             if (!FullyDisappeared())
             {
                 dissolveAmount = Mathf.Clamp01(dissolveAmount + Time.deltaTime * dissolveTime);
-                material.SetFloat("_DissolveSlider", dissolveAmount);
+                dissolveMaterial.SetFloat("_DissolveSlider", dissolveAmount);
             }
             else
             {
@@ -65,6 +50,10 @@ public class DisappearEffect : MonoBehaviour
         if(dissolveAmount >= .99f)
         {
             Debug.Log("Fully dissolved -> Do something...");
+
+            // Apply normal materials back & reset variables
+            ApplyShader(originalMaterial);
+            dissolveAmount = 0f;
             return true;
         }
         return false; 
@@ -72,7 +61,7 @@ public class DisappearEffect : MonoBehaviour
 
 
     // Apply shader material to all children of component
-    private void ApplyShader()
+    private void ApplyShader(Material material)
     {
         Image[] images;
         images = GetComponentsInChildren<Image>();

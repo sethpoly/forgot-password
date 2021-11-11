@@ -4,7 +4,7 @@ public enum NavAction {
     Minimize, Fullscreen, Close
 }
 
-public class NavButton : TabButton
+public class NavButton : TTabButton
 {
     [SerializeField]
     public NavAction clickAction; 
