@@ -6,73 +6,70 @@ public enum Display { Closed, TopMost, Open, Minimized  };
 
 public class Window : MonoBehaviour
 {
-    public Display Display
-    {
-        get { return _display; }
-        set
-        {
-            _display = value;
+    public Display Display { get { return _display; } }
 
-            switch (_display)
-            {
-                case Display.Closed:
-                    Closed();
-                    break;
-                case Display.TopMost:
-                    TopMost();
-                    break;
-                case Display.Open:
-                    Open();
-                    break;
-                case Display.Minimized:
-                    Minimized();
-                    break;
-            }
-        }
-    }
     [SerializeField]
     private Display _display;
+    
+    // Sets current display of window
+    // onCompletion callback when window transition is complete and we are ready to re-sort the window stack 
+    public void SetDisplay(Display display, System.Action<bool> onCompletion)
+    {
+        _display = display;
 
-    // Determine if in mid-state change transition
-    // Don't include in SetNextTopmost while transitioning
-    // TODO: Make private set
-    public bool transitioning = false;
+        switch (_display)
+        {
+            case Display.Closed:
+                Closed((closingComplete) => { onCompletion(closingComplete); });
+                break;
+            case Display.TopMost:
+                TopMost();
+                // TODO:
+                onCompletion(true);
+                break;
+            case Display.Open:
+                Open();
+                // TODO:
+                onCompletion(true);
+                break;
+            case Display.Minimized:
+                Minimized();
+                // TODO:
+                onCompletion(true);
+                break;
+        }
+    }
 
     private void TopMost()
     {
         Debug.Log("Setting window TopMost...");
-        transitioning = true;
         gameObject.SetActive(true);
         transform.SetAsLastSibling();
-        transitioning = false;
     }
 
     // TODO: 
     private void Open()
     {
         Debug.Log("Window: Open() -> Didn't implement...");
-        transitioning = true;
-        transitioning = false;
     }
 
     private void Minimized()
     {
         Debug.Log("Setting window Minimized...");
-        transitioning = true;
         DisableSelf();
     }
     
     // TODO:
-    private void Closed()
+    private void Closed(System.Action<bool> onCompletion)
     {
         Debug.Log("Setting window Closed...");
-        transitioning = true;
 
         // Disappear effect
-        GetComponent<DisappearEffect>().StartDisappearring((onCompletion) =>
+        GetComponent<DisappearEffect>().StartDisappearring((hasDisappeared) =>
         {
-            Debug.Log("Disappearing finished -> " + onCompletion);
+            Debug.Log("Disappearing finished -> " + hasDisappeared);
             DisableSelf();
+            onCompletion(true);
         });
     }
 
@@ -80,6 +77,5 @@ public class Window : MonoBehaviour
     {
         Debug.Log("Disabling window " + this.name);
         gameObject.SetActive(false);
-        transitioning = false;
     }
 }

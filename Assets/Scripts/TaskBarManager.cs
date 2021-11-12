@@ -67,9 +67,10 @@ public class TaskBarManager : TabGroup
     // Set window to requested display, set the next topmost, and update backgrounds
     public void SetWindowStateAndRefresh(Window window, Display display)
     {
-        window.Display = display;
-        SetNextTopMost();
-        UpdateTabBackgrounds();
+        window.SetDisplay(display, (onCompletion) => {
+            SetNextTopMost();
+            UpdateTabBackgrounds();
+        });
     }
 
     // Set next window in stack to topmost
@@ -82,10 +83,9 @@ public class TaskBarManager : TabGroup
         for (int i = 0; i < windowCount; i++)
         {
             Window nextWindowInStack = windowContainer.transform.GetChild(i).GetComponent<Window>();
-            //if (nextWindowInStack.isActiveAndEnabled && nextWindowInStack != null)
-            if (!nextWindowInStack.transitioning && nextWindowInStack.isActiveAndEnabled && nextWindowInStack != null)
+            if (nextWindowInStack.isActiveAndEnabled && nextWindowInStack != null)
             {
-                nextWindowInStack.Display = Display.Open;
+                nextWindowInStack.SetDisplay(Display.Open, (onCompletion => { }));
                 activeWindows.Add(nextWindowInStack);
             }
         }
@@ -93,7 +93,7 @@ public class TaskBarManager : TabGroup
         // Set most topmost window to Display.TopMost 
         if (activeWindows.Count > 0 && activeWindows[activeWindows.Count - 1].Display != Display.TopMost)
         {
-            activeWindows[activeWindows.Count - 1].Display = Display.TopMost;
+            activeWindows[activeWindows.Count - 1].SetDisplay(Display.TopMost, (onCompletion => { }));
         }
     }
 
