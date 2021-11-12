@@ -83,7 +83,7 @@ public class TaskBarManager : TabGroup
         for (int i = 0; i < windowCount; i++)
         {
             Window nextWindowInStack = windowContainer.transform.GetChild(i).GetComponent<Window>();
-            if (nextWindowInStack.isActiveAndEnabled && nextWindowInStack != null)
+            if (nextWindowInStack != null && nextWindowInStack.isActiveAndEnabled)
             {
                 nextWindowInStack.SetDisplay(Display.Open, (onCompletion => { }));
                 activeWindows.Add(nextWindowInStack);

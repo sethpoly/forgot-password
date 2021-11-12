@@ -6,11 +6,18 @@ public enum Display { Closed, TopMost, Open, Minimized  };
 
 public class Window : MonoBehaviour
 {
+    private Vector2 startPosition;
     public Display Display { get { return _display; } }
 
     [SerializeField]
     private Display _display;
-    
+
+    private void Start()
+    {
+        // Save initial start position so we can reset it later
+        startPosition = transform.position;
+    }
+
     // Sets current display of window
     // onCompletion callback when window transition is complete and we are ready to re-sort the window stack 
     public void SetDisplay(Display display, System.Action<bool> onCompletion)
@@ -68,7 +75,10 @@ public class Window : MonoBehaviour
         GetComponent<DisappearEffect>().StartDisappearring((hasDisappeared) =>
         {
             Debug.Log("Disappearing finished -> " + hasDisappeared);
+
+            // Disable gameobject and reset position to origin
             DisableSelf();
+            ResetPosition();
             onCompletion(true);
         });
     }
@@ -77,5 +87,10 @@ public class Window : MonoBehaviour
     {
         Debug.Log("Disabling window " + this.name);
         gameObject.SetActive(false);
+    }
+
+    private void ResetPosition()
+    {
+        transform.position = startPosition;
     }
 }
