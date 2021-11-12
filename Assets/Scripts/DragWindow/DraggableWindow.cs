@@ -2,35 +2,44 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 
 [RequireComponent(typeof(EventTrigger))]
-public class Draggable : MonoBehaviour, IBeginDragHandler, IEndDragHandler
+public class DraggableWindow : MonoBehaviour, IBeginDragHandler, IEndDragHandler
 {
 
-    public GameObject Target;
     private EventTrigger _eventTrigger;
     private Vector2 lastMousePosition;
+    private Window window;
+
+    [SerializeField]
+    private GameObject windowContainer;
+
+    private Rect containerRect;
 
     public void Start()
     {
         _eventTrigger = GetComponent<EventTrigger>();
         _eventTrigger.AddEventTrigger(OnDrag, EventTriggerType.Drag);
         _eventTrigger.AddEventTrigger(OnMouseDown, EventTriggerType.PointerClick);
+        window = GetComponent<Window>();
 
+        containerRect = windowContainer.GetComponent<RectTransform>().rect;
     }
 
     public void OnMouseDown(BaseEventData data)
     {
-        StackOnTop();
+        TaskBarManager.Instance.SetWindowStateAndRefresh(window, Display.TopMost);
     }
 
     public void OnBeginDrag(PointerEventData eventData)
     {
         Debug.Log("Begin Drag");
         lastMousePosition = eventData.position;
-        StackOnTop();
+
+        TaskBarManager.Instance.SetWindowStateAndRefresh(window, Display.TopMost);
     }
 
     public void OnDrag(BaseEventData data)
     {
+        Debug.Log("Dragging");
         PointerEventData ped = (PointerEventData)data;
         Vector2 currentMousePosition = ped.position;
         Vector2 diff = currentMousePosition - lastMousePosition;
@@ -55,10 +64,11 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IEndDragHandler
     private bool IsRectTransformInsideSreen(RectTransform rectTransform)
     {
         bool isInside = false;
+        float tabHeight = Screen.height - containerRect.height;
         Vector3[] corners = new Vector3[4];
         rectTransform.GetWorldCorners(corners);
         int visibleCorners = 0;
-        Rect rect = new Rect(0, 0, Screen.width, Screen.height);
+        Rect rect = new Rect(0, tabHeight, containerRect.width, containerRect.height);
         foreach (Vector3 corner in corners)
         {
             if (rect.Contains(corner))
@@ -70,12 +80,8 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IEndDragHandler
         {
             isInside = true;
         }
+        Debug.Log("isInside: " + isInside);
+        Debug.Log("Corners: " + corners);
         return isInside;
-    }
-
-    // Stack window at topmost layer
-    private void StackOnTop()
-    {
-        transform.SetAsLastSibling(); 
     }
 }
