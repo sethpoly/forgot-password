@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Dissolve
-  m_Shader: {fileID: -6465566751694194690, guid: 2e16914d3caa99b4f99ff80f144a3257, type: 3}
+  m_Name: ScaleDown
+  m_Shader: {fileID: -6465566751694194690, guid: 4fb1466035ca8ee4783b829b228b3adc, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -19,8 +19,12 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - Texture2D_737890c5bef345d2b438bcb0a6de9a84:
+        m_Texture: {fileID: 2800000, guid: 4153991afeb048e448fc49c7b1dec60e, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 00b4296728d22884ea3fa001d3d6c3fc, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -36,9 +40,8 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - Vector1_6769d04088134d80bdf43aa703dfbae0: 0.01
-    - Vector1_d465c5650e7646b88dd4a52528a2b7de: 5000
-    - _DissolveSlider: 0.9916845
-    m_Colors:
-    - Color_35c8949bf5924c70a95de83fdce4a054: {r: 0.5882353, g: 0.2562733, b: 0.8113208, a: 0}
+    - Vector1_324e0be0ca6e4a0e8a0c7b7019c53a67: 0
+    - Vector1_bfe63847727e4c60a526f5988cef94df: 1
+    - Vector1_f840d6b5bd96459f9191cf4a4816ad16: 5
+    m_Colors: []
   m_BuildTextureStacks: []
