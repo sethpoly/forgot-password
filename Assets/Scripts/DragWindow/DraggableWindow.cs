@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 
 [RequireComponent(typeof(EventTrigger))]
-public class Draggable : MonoBehaviour, IBeginDragHandler, IEndDragHandler
+public class DraggableWindow : MonoBehaviour, IBeginDragHandler, IEndDragHandler
 {
 
     private EventTrigger _eventTrigger;
