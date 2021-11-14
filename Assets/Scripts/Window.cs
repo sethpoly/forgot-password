@@ -73,7 +73,7 @@ public class Window : MonoBehaviour
     {
         Debug.Log("Setting window Minimized...");
         
-        LeanTween.scale(gameObject, new Vector3(0, 0, 0), 0.1f).setOnComplete((completion) => {
+        MinimizeTweenRotate((completion) => {
             DisableSelf();
             ResetScale();
             onCompletion(true);
@@ -107,6 +107,27 @@ public class Window : MonoBehaviour
             Debug.Log("Shader effect complete -> " + shaderConstant);
             onCompletion(true);
         });
+    }
+
+    private void MinimizeTween(System.Action<object> onComplete)
+    {
+        float speed = .1f;
+        LeanTween.scaleY(gameObject, .05f, speed).setOnComplete((completion) =>
+        {
+            LeanTween.scaleX(gameObject, 0, speed).setOnComplete(onComplete);
+        });
+    }
+
+    private void MinimizeTweenRotate(System.Action<object> onComplete)
+    {
+        float speed = .1f;
+        float rotateSpeed = .3f;
+        LeanTween.rotateAround(gameObject, Vector3.forward, 360.0f, rotateSpeed).setOnComplete((completion) => { 
+            LeanTween.scaleY(gameObject, .05f, speed).setDelay(.1f).setOnComplete((completion) =>
+            {
+                LeanTween.scaleX(gameObject, 0.0f, speed).setOnComplete(onComplete);
+            });
+        }); 
     }
 
     private void ResetScale()
