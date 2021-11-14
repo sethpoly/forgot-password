@@ -100,7 +100,8 @@ public class Window : MonoBehaviour
 
     private void ApplyShader(LinearShaderEffect effect, Material shaderMaterial, string shaderConstant, System.Action<bool> onCompletion)
     {
-        effect.C(shaderMaterial, originalMaterial, shaderConstant);
+        Material newShaderMaterial = new Material(shaderMaterial);
+        effect.C(newShaderMaterial, originalMaterial, shaderConstant);
         effect.BeginEffect((complete) =>
         {
             Debug.Log("Shader effect complete -> " + shaderConstant);

@@ -7,7 +7,7 @@ public class MinimizeEffect : LinearShaderEffect
 
     protected new float effectTime = 7.5f;
     protected float startAmount = 1f;
-    protected float endAmount = -1f;
+    protected float endAmount = 0f;
 
     private void Awake()
     {
