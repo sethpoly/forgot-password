@@ -17,6 +17,7 @@ public class Window : MonoBehaviour
 
 
     private Vector2 startPosition;
+    private Vector3 startScale = Vector3.one;
     public Display Display { get { return _display; } }
 
     [SerializeField]
@@ -71,11 +72,10 @@ public class Window : MonoBehaviour
     private void Minimized(System.Action<bool> onCompletion)
     {
         Debug.Log("Setting window Minimized...");
-
-        MinimizeEffect effect = gameObject.AddComponent<MinimizeEffect>();
-        ApplyShader(effect, minimizeMaterial, ShaderConstants.minimize, (completion) =>
-        {
+        
+        LeanTween.scale(gameObject, new Vector3(0, 0, 0), 0.1f).setOnComplete((completion) => {
             DisableSelf();
+            ResetScale();
             onCompletion(true);
         });
     }
@@ -107,6 +107,11 @@ public class Window : MonoBehaviour
             Debug.Log("Shader effect complete -> " + shaderConstant);
             onCompletion(true);
         });
+    }
+
+    private void ResetScale()
+    {
+        LeanTween.scale(gameObject, startScale, 0f);
     }
 
     private void ResetPosition()

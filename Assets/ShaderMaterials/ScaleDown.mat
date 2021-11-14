@@ -43,6 +43,6 @@ Material:
     - Vector1_324e0be0ca6e4a0e8a0c7b7019c53a67: 0
     - Vector1_bfe63847727e4c60a526f5988cef94df: 1
     - Vector1_f840d6b5bd96459f9191cf4a4816ad16: 5
-    - _ScaleSlider: 0
+    - _ScaleSlider: 1
     m_Colors: []
   m_BuildTextureStacks: []
