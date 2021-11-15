@@ -15,9 +15,11 @@ public class Window : MonoBehaviour
     [SerializeField]
     private Material originalMaterial;
 
-
+    // Tween helpers
     private Vector2 startPosition;
     private Vector3 startScale = Vector3.one;
+    private Tweenable tweenable;
+
     public Display Display { get { return _display; } }
 
     [SerializeField]
@@ -27,6 +29,9 @@ public class Window : MonoBehaviour
     {
         // Save initial start position so we can reset it later
         startPosition = transform.position;
+
+        // Tweening helper function
+        tweenable = GetComponent<Tweenable>();
     }
 
     // Sets current display of window
@@ -72,8 +77,9 @@ public class Window : MonoBehaviour
     private void Minimized(System.Action<bool> onCompletion)
     {
         Debug.Log("Setting window Minimized...");
-        
-        MinimizeTweenRotate((completion) => {
+
+        tweenable.MinimizeTween((completion) =>
+        {
             DisableSelf();
             ResetScale();
             onCompletion(true);
@@ -107,27 +113,6 @@ public class Window : MonoBehaviour
             Debug.Log("Shader effect complete -> " + shaderConstant);
             onCompletion(true);
         });
-    }
-
-    private void MinimizeTween(System.Action<object> onComplete)
-    {
-        float speed = .1f;
-        LeanTween.scaleY(gameObject, .05f, speed).setOnComplete((completion) =>
-        {
-            LeanTween.scaleX(gameObject, 0, speed).setOnComplete(onComplete);
-        });
-    }
-
-    private void MinimizeTweenRotate(System.Action<object> onComplete)
-    {
-        float speed = .1f;
-        float rotateSpeed = .3f;
-        LeanTween.rotateAround(gameObject, Vector3.forward, 360.0f, rotateSpeed).setOnComplete((completion) => { 
-            LeanTween.scaleY(gameObject, .05f, speed).setDelay(.1f).setOnComplete((completion) =>
-            {
-                LeanTween.scaleX(gameObject, 0.0f, speed).setOnComplete(onComplete);
-            });
-        }); 
     }
 
     private void ResetScale()
