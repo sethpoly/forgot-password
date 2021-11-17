@@ -44,7 +44,6 @@ public class LinearShaderEffect : MonoBehaviour
     {
         while (true)
         {
-            Debug.Log("Disappear coroutine re-running...");
             if (!ActionComplete())
             {
                 effectAmount = Mathf.Clamp01(effectAmount + Time.deltaTime * effectTime);
@@ -90,7 +89,8 @@ public class LinearShaderEffect : MonoBehaviour
         text = GetComponentsInChildren<Text>();
         foreach (Text i in text)
         {
-            i.font.material = material;
+            Debug.Log("Text material: " + i.material.name);
+            i.material = material;
         }
     }
 
