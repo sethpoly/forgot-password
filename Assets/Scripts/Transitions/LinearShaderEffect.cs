@@ -85,5 +85,13 @@ public class LinearShaderEffect : MonoBehaviour
         {
             i.material = material;
         }
+
+        Text[] text;
+        text = GetComponentsInChildren<Text>();
+        foreach (Text i in text)
+        {
+            i.font.material = material;
+        }
     }
+
 }
