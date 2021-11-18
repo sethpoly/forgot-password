@@ -84,14 +84,5 @@ public class LinearShaderEffect : MonoBehaviour
         {
             i.material = material;
         }
-
-        Text[] text;
-        text = GetComponentsInChildren<Text>();
-        foreach (Text i in text)
-        {
-            Debug.Log("Text material: " + i.material.name);
-            i.material = material;
-        }
     }
-
 }

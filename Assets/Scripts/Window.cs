@@ -96,6 +96,21 @@ public class Window : MonoBehaviour
             ResetPosition();
             onCompletion(true);
         });
+
+        // Test transparentizing text elements
+        Text[] text;
+        text = GetComponentsInChildren<Text>();
+        TransparentizeText textTransformer = gameObject.AddComponent<TransparentizeText>();
+        foreach (Text t in text)
+        {
+            textTransformer.Transparentize(t, (completion) =>
+            {
+                Debug.Log("Text has been transparentized...");
+                Color c = t.material.color;
+                c.a = 1f;
+                t.material.color = c;
+            });
+        }
     }
 
     private void DisableSelf()
