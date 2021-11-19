@@ -94,23 +94,28 @@ public class Window : MonoBehaviour
         ApplyShader(effect, dissolveMaterial, ShaderConstants.dissolve, (completion) => {
             DisableSelf();
             ResetPosition();
-            onCompletion(true);
+            //onCompletion(true);
         });
 
         // Test transparentizing text elements
-        Text[] text;
-        text = GetComponentsInChildren<Text>();
+/*        Text[] text;
+        text = GetComponentsInChildren<Text>();*/
         TransparentizeText textTransformer = gameObject.AddComponent<TransparentizeText>();
-        foreach (Text t in text)
+        textTransformer.Transparentize(gameObject, (completion) =>
+        {
+            Debug.Log("Text has been transparentized...");
+            onCompletion(true);
+            });
+/*        foreach (Text t in text)
         {
             textTransformer.Transparentize(t, (completion) =>
             {
                 Debug.Log("Text has been transparentized...");
-                Color c = t.material.color;
-                c.a = 1f;
-                t.material.color = c;
+                Color c = t.color;
+*//*                c.a = 1f;
+                t.material.color = c;*//*
             });
-        }
+        }*/
     }
 
     private void DisableSelf()
