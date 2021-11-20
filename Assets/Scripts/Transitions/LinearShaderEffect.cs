@@ -66,8 +66,6 @@ public class LinearShaderEffect : MonoBehaviour
         {
             Debug.Log("Shader action: " + shaderConstant +" complete -> Do something...");
 
-            // Apply normal materials back & reset variables
-            ApplyShader(originalMaterial);
             effectAmount = 0f;
             return true;
         }
@@ -76,7 +74,7 @@ public class LinearShaderEffect : MonoBehaviour
 
 
     // Apply shader material to all children of component
-    protected void ApplyShader(Material material)
+    public void ApplyShader(Material material)
     {
         Image[] images;
         images = GetComponentsInChildren<Image>();

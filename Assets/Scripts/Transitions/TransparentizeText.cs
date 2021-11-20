@@ -5,11 +5,23 @@ using UnityEngine.UI;
 
 public class TransparentizeText : MonoBehaviour
 {
-    private float effectTime = 2f;
+    private float effectTime = 2.25f;
+    private GameObject obj;
+    private int offset = 0;
+
+
+    private void BeforeRoutineStart(GameObject obj)
+    {
+        this.obj = obj;
+    }
 
     public void Transparentize(GameObject obj, System.Action<bool> onCompletion)
     {
+        BeforeRoutineStart(obj);
         int count = 0;
+        if(ToolTipExists()) { offset++; }
+        Debug.Log("ToolTipExists? -> " + ToolTipExists());
+
         Text[] textElements = obj.GetComponentsInChildren<Text>();
 
         foreach (Text text in textElements)
@@ -18,11 +30,11 @@ public class TransparentizeText : MonoBehaviour
             {
                 count++;
                 Debug.Log("on transparent result -> count: " + count + " length: " + textElements.Length);
-                
-                if (count == textElements.Length)
+
+                if (count == textElements.Length - offset)
                 {
                     Debug.Log("Finished transparentizing all text...");
-                    onCompletion(result);     
+                    onCompletion(result);
                 }
             }));
         }
@@ -55,15 +67,28 @@ public class TransparentizeText : MonoBehaviour
     {
         if (text.color.a <= 0)
         {
-            // Set color alpha to 0f
+            return true;
+        }
+        return false;
+    }
+
+    public void ResetTextAlpha()
+    {
+        Text[] textElements = obj.GetComponentsInChildren<Text>();
+        Debug.Log("Text count : " + textElements.Length);
+
+        foreach (Text text in textElements)
+        {
             Color c = text.color;
-            //c.a = 1f;
-            //text.color = c;
-            
-            // Apply normal materials back & reset variables
-/*            Color c = text.material.color;
             c.a = 1f;
-            text.material.color = c;*/
+            text.color = c;
+        }
+    }
+    public bool ToolTipExists()
+    {
+        ToolTip toolTip = GetComponentInChildren<ToolTip>();
+        if (toolTip != null) 
+        {
             return true;
         }
         return false;

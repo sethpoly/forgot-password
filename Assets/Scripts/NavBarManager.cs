@@ -26,7 +26,7 @@ public class NavBarManager : TabGroup
 
     public override void OnTabExit(TTabButton button)
     {
-        throw new System.NotImplementedException();
+        //qthrow new System.NotImplementedException();
     }
 
     public override void OnTabSelected(TTabButton button)

@@ -91,31 +91,17 @@ public class Window : MonoBehaviour
         Debug.Log("Setting window Closed...");
 
         LinearShaderEffect effect = gameObject.AddComponent<LinearShaderEffect>();
-        ApplyShader(effect, dissolveMaterial, ShaderConstants.dissolve, (completion) => {
-            DisableSelf();
-            ResetPosition();
-            //onCompletion(true);
-        });
+        ApplyShader(effect, dissolveMaterial, ShaderConstants.dissolve, (completion) => {});
 
         // Test transparentizing text elements
-/*        Text[] text;
-        text = GetComponentsInChildren<Text>();*/
         TransparentizeText textTransformer = gameObject.AddComponent<TransparentizeText>();
         textTransformer.Transparentize(gameObject, (completion) =>
         {
             Debug.Log("Text has been transparentized...");
+            DisableSelf();
+            ResetPositionAndShaders();
             onCompletion(true);
             });
-/*        foreach (Text t in text)
-        {
-            textTransformer.Transparentize(t, (completion) =>
-            {
-                Debug.Log("Text has been transparentized...");
-                Color c = t.color;
-*//*                c.a = 1f;
-                t.material.color = c;*//*
-            });
-        }*/
     }
 
     private void DisableSelf()
@@ -140,8 +126,10 @@ public class Window : MonoBehaviour
         LeanTween.scale(gameObject, startScale, 0f);
     }
 
-    private void ResetPosition()
+    private void ResetPositionAndShaders()
     {
+        GetComponent<LinearShaderEffect>().ApplyShader(originalMaterial);
+        GetComponent<TransparentizeText>().ResetTextAlpha();
         transform.position = startPosition;
     }
 }
