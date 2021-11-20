@@ -6,7 +6,20 @@ public enum Display { Closed, TopMost, Open, Minimized  };
 
 public class Window : MonoBehaviour
 {
+    // Temporary reference to all shader materials
+    // Should mvoe this somewhere else, ideally use a FSM
+    [SerializeField]
+    private Material dissolveMaterial;
+    [SerializeField]
+    private Material minimizeMaterial;
+    [SerializeField]
+    private Material originalMaterial;
+
+    // Tween helpers
     private Vector2 startPosition;
+    private Vector3 startScale = Vector3.one;
+    private Tweenable tweenable;
+
     public Display Display { get { return _display; } }
 
     [SerializeField]
@@ -16,6 +29,9 @@ public class Window : MonoBehaviour
     {
         // Save initial start position so we can reset it later
         startPosition = transform.position;
+
+        // Tweening helper function
+        tweenable = GetComponent<Tweenable>();
     }
 
     // Sets current display of window
@@ -27,7 +43,7 @@ public class Window : MonoBehaviour
         switch (_display)
         {
             case Display.Closed:
-                Closed((closingComplete) => { onCompletion(closingComplete); });
+                Closed((complete) => { onCompletion(complete); });
                 break;
             case Display.TopMost:
                 TopMost();
@@ -40,9 +56,7 @@ public class Window : MonoBehaviour
                 onCompletion(true);
                 break;
             case Display.Minimized:
-                Minimized();
-                // TODO:
-                onCompletion(true);
+                Minimized((complete) => { onCompletion(complete); });
                 break;
         }
     }
@@ -60,27 +74,34 @@ public class Window : MonoBehaviour
         Debug.Log("Window: Open() -> Didn't implement...");
     }
 
-    private void Minimized()
+    private void Minimized(System.Action<bool> onCompletion)
     {
         Debug.Log("Setting window Minimized...");
-        DisableSelf();
+
+        tweenable.MinimizeTween((completion) =>
+        {
+            DisableSelf();
+            ResetScale();
+            onCompletion(true);
+        });
     }
     
-    // TODO:
     private void Closed(System.Action<bool> onCompletion)
     {
         Debug.Log("Setting window Closed...");
 
-        // Disappear effect
-        GetComponent<DisappearEffect>().StartDisappearring((hasDisappeared) =>
-        {
-            Debug.Log("Disappearing finished -> " + hasDisappeared);
+        LinearShaderEffect effect = gameObject.AddComponent<LinearShaderEffect>();
+        ApplyShader(effect, dissolveMaterial, ShaderConstants.dissolve, (completion) => {});
 
-            // Disable gameobject and reset position to origin
+        // Test transparentizing text elements
+        TransparentizeText textTransformer = gameObject.AddComponent<TransparentizeText>();
+        textTransformer.Transparentize(gameObject, (completion) =>
+        {
+            Debug.Log("Text has been transparentized...");
             DisableSelf();
-            ResetPosition();
+            ResetPositionAndShaders();
             onCompletion(true);
-        });
+            });
     }
 
     private void DisableSelf()
@@ -89,8 +110,26 @@ public class Window : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    private void ResetPosition()
+    private void ApplyShader(LinearShaderEffect effect, Material shaderMaterial, string shaderConstant, System.Action<bool> onCompletion)
     {
+        Material newShaderMaterial = new Material(shaderMaterial);
+        effect.C(newShaderMaterial, originalMaterial, shaderConstant);
+        effect.BeginEffect((complete) =>
+        {
+            Debug.Log("Shader effect complete -> " + shaderConstant);
+            onCompletion(true);
+        });
+    }
+
+    private void ResetScale()
+    {
+        LeanTween.scale(gameObject, startScale, 0f);
+    }
+
+    private void ResetPositionAndShaders()
+    {
+        GetComponent<LinearShaderEffect>().ApplyShader(originalMaterial);
+        GetComponent<TransparentizeText>().ResetTextAlpha();
         transform.position = startPosition;
     }
 }
